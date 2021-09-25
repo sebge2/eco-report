@@ -1,0 +1,23 @@
+name: Build LaTeX document
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@latest
+        with:
+          entrypoint: ./publish.sh
+      - name: Upload Binaries
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: main.pdf
+          asset_name: eco-report.pdf
+          tag: ${{ github.ref }}
