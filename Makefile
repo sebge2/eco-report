@@ -6,3 +6,6 @@ endif
 
 build:
 	pdflatex  -file-line-error -interaction=nonstopmode -recorder  "\newcommand\documentVersion[1]{"$(TAG)"}\input{main.tex}"
+	bibtex main
+	pdflatex  -file-line-error -interaction=nonstopmode -recorder  "\newcommand\documentVersion[1]{"$(TAG)"}\input{main.tex}"
+	pdflatex  -file-line-error -interaction=nonstopmode -recorder  "\newcommand\documentVersion[1]{"$(TAG)"}\input{main.tex}"
